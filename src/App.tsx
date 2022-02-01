@@ -103,7 +103,7 @@ function App() {
     </Container>
     <Box sx={{ position: 'absolute', bottom: 10, width: '100%', textAlign: 'center' }}>
       <Typography variant='caption'>
-        Jiin Joo's <a href='https://wp.jiinjoo.com'>blog</a> | Made with ❤️ in Singapore
+        Jiin Joo's <a href='https://wp.jiinjoo.com'>blog</a> | <a href='https://github.com/jiinjoo/wordle-art'>Github</a> | Made with ❤️ in Singapore
       </Typography>
     </Box>
   </>)
