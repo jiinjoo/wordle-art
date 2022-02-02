@@ -1,7 +1,7 @@
 {
   "name": "wordle-art",
   "description": "Screenshot to make your social media posts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "http://www.jiinjoo.com/wordle-art",
   "dependencies": {
     "@emotion/react": "^11.7.1",

@@ -9,9 +9,10 @@ import {
 } from '@mui/material'
 
 function App() {
-  const [ answer,   setAnswer   ] = React.useState('SAFER')
-  const [ attempts, setAttempts ] = React.useState('TRACK\nDRONE\nFLEET\nBVLOS')
-  const [ inclAns,  setInclAns  ] = React.useState(true)
+  const [ answer,    setAnswer    ] = React.useState('')
+  const [ attempts,  setAttempts  ] = React.useState('')
+  const [ inclAns,   setInclAns   ] = React.useState(true)
+  const [ upperCase, setUpperCase ] = React.useState(true)
 
   function tile(key: string, char: string, col: string) {
     return <Grid item key={key}
@@ -57,15 +58,25 @@ function App() {
   }
 
   function handleAnswerChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setAnswer(event.target.value.toUpperCase())
+    if (upperCase)
+      setAnswer(event.target.value.toUpperCase())
+    else
+      setAnswer(event.target.value) // to support composition input
   }
 
   function handleAttemptsChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setAttempts(event.target.value.toUpperCase())
+    if (upperCase)
+      setAttempts(event.target.value.toUpperCase())
+    else
+      setAttempts(event.target.value) // to support composition input
   }
 
   function handleIncludeAnswerChecked(event: React.ChangeEvent<HTMLInputElement>) {
     setInclAns(event.target.checked)
+  }
+
+  function handleUpperCaseChecked(event: React.ChangeEvent<HTMLInputElement>) {
+    setUpperCase(event.target.checked)
   }
 
   return (<>
@@ -75,7 +86,7 @@ function App() {
           Wordle Art
         </Typography>
         <Typography variant='overline'>
-          Screenshot to make your social media posts
+          Screenshot to make social media posts
         </Typography>
       </Box>
       <Grid container spacing={1} sx={{ mt: 2}}>
@@ -84,15 +95,19 @@ function App() {
             fullWidth onChange={handleAnswerChange} />
           <br />
           <Checkbox checked={inclAns}
-            onChange={handleIncludeAnswerChecked} /> Include Answer
+            onChange={handleIncludeAnswerChecked} /> Include answer
+          <br />
+          <Checkbox checked={upperCase}
+            onChange={handleUpperCaseChecked} /> Upper case
         </Grid>
         <Grid item xs={6}>
-          <TextField multiline rows={6} fullWidth
+          <TextField multiline rows={4} fullWidth
             value={attempts} label='Attempts (1 word per line)'
             onChange={handleAttemptsChange} />
         </Grid>
         <Grid item xs={12} container sx={{
-          my: 3,
+          mt: 3,
+          mb: 6,
           display: 'grid',
           alignItems: 'center',
           justifyContent: 'center',
@@ -101,7 +116,7 @@ function App() {
         </Grid>
       </Grid>
     </Container>
-    <Box sx={{ position: 'absolute', bottom: 10, width: '100%', textAlign: 'center' }}>
+    <Box sx={{ position: 'fixed', bottom: 10, width: '100%', textAlign: 'center' }}>
       <Typography variant='caption'>
         Jiin Joo's <a href='https://wp.jiinjoo.com'>blog</a> | <a href='https://github.com/jiinjoo/wordle-art'>Github</a> | Made with ❤️ in Singapore
       </Typography>
